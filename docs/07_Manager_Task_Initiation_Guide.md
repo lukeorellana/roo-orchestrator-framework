@@ -338,11 +338,11 @@ Log completion to: [Specific Memory Bank file]
 
 ### Status Tracking
 **Active Tasks:**
-- Task A2: In Progress (Code Mode)
-- Task B1: Pending Review (Manager)
+- Task A2: In Progress (Code Mode) - Due Today
+- Task B1: Pending Review (Manager) - Completed Yesterday
 - Task C1: Not Started - Waiting for Task A2 completion
 
-**Completed Tasks:**
+**Completed This Week:**
 - Task A1: Database Schema ✅
 - Task X1: Security Research ✅
 
