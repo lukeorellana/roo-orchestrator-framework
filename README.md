@@ -31,10 +31,11 @@ This project maintains the MIT license and builds upon the solid foundation esta
 ### Step 2: Clone and Copy
 ```bash
 # Clone this repository
-git clone https://github.com/your-repo/roo-agentic-project-management.git
+git clone https://github.com/lukeorellana/roo-agentic-project-management.git
 
 # Copy the essential folders to your project
 cp -r roo-agentic-project-management/prompts /path/to/your/project/
+cp -r roo-agentic-project-management/docs /path/to/your/project/
 cp -r roo-agentic-project-management/roo-workflows /path/to/your/project/
 
 # That's it! You now have RAPM in your project.
