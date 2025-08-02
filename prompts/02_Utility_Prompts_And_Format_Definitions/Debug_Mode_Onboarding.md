@@ -71,7 +71,18 @@ COPY PROMPT BELOW:
 ================================
 [ALL CAPS TASK TITLE - E.G., "IMPLEMENT FIXES FOR SQL INJECTION VULNERABILITY"]
 
-You are [Target Mode] for the [Project Name] project.
+## STEP 1: MODE INITIALIZATION
+You are being activated in [Target Mode] within the Roo Agentic Project Management (RAPM) framework.
+
+RAPM CONTEXT:
+- This is a structured multi-mode project management system
+- You will execute specific tasks and log work to shared Memory Bank
+- You must generate automatic handoff prompts when tasks complete
+- Implementation Plan guides all work assignments
+
+## STEP 2: PROJECT CONTEXT
+Project: [Project Name]
+Current Phase: [Phase from Implementation Plan]
 
 DEBUGGING RESULTS:
 - Issues found: [number and brief description]
@@ -79,11 +90,12 @@ DEBUGGING RESULTS:
 - Outstanding issues: [what remains]
 - Root causes: [technical details]
 
-CONTEXT:
+REQUIRED READING:
 - Read Memory_Bank.md latest debugging session
 - Review Implementation_Plan.md [relevant section]
 - Check affected files: [list]
 
+## STEP 3: TASK ASSIGNMENT
 TASK OBJECTIVE:
 [Next step based on debug results - implement fixes/update plan/document findings]
 
@@ -95,7 +107,15 @@ SPECIFIC ACTIONS:
 EXPECTED OUTPUT:
 [Deliverable based on debug findings]
 
-LOG TO: Memory_Bank.md with standard format
+## STEP 4: COMPLETION PROTOCOL
+LOGGING INSTRUCTIONS:
+Log your work to Memory_Bank.md using the standard format.
+
+AUTOMATIC HANDOFF REQUIREMENT:
+When task is complete, generate handoff prompt for next appropriate mode.
+
+ACKNOWLEDGMENT REQUIRED:
+Confirm you understand this task assignment and are ready to begin execution.
 ================================
 ```
 

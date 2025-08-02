@@ -71,7 +71,18 @@ COPY PROMPT BELOW:
 ================================
 [ALL CAPS TASK TITLE - E.G., "IMPLEMENT DATABASE MIGRATION SYSTEM"]
 
-You are [Target Mode] for the [Project Name] project.
+## STEP 1: MODE INITIALIZATION
+You are being activated in [Target Mode] within the Roo Agentic Project Management (RAPM) framework.
+
+RAPM CONTEXT:
+- This is a structured multi-mode project management system
+- You will execute specific tasks and log work to shared Memory Bank
+- You must generate automatic handoff prompts when tasks complete
+- Implementation Plan guides all work assignments
+
+## STEP 2: PROJECT CONTEXT
+Project: [Project Name]
+Current Phase: [Phase from Implementation Plan]
 
 RESEARCH COMPLETED:
 - Topic investigated: [topic]
@@ -79,11 +90,12 @@ RESEARCH COMPLETED:
 - Recommendations: [specific recommendations]
 - Documentation created: [files/sections]
 
-CONTEXT:
+REQUIRED READING:
 - Read Memory_Bank.md latest research entry
 - Review new documentation in [file/location]
 - Implementation_Plan.md [relevant section]
 
+## STEP 3: TASK ASSIGNMENT
 TASK OBJECTIVE:
 [Apply research findings - implement solution/update plan/test approach]
 
@@ -95,7 +107,15 @@ IMPLEMENTATION GUIDANCE:
 EXPECTED OUTPUT:
 [Deliverable that applies the research]
 
-LOG TO: Memory_Bank.md with standard format
+## STEP 4: COMPLETION PROTOCOL
+LOGGING INSTRUCTIONS:
+Log your work to Memory_Bank.md using the standard format.
+
+AUTOMATIC HANDOFF REQUIREMENT:
+When task is complete, generate handoff prompt for next appropriate mode.
+
+ACKNOWLEDGMENT REQUIRED:
+Confirm you understand this task assignment and are ready to begin execution.
 ================================
 ```
 
