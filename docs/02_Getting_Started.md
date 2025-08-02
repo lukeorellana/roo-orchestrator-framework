@@ -102,15 +102,29 @@ This is the iterative process of getting work done using Roo's mode system.
     *   **Decide** if the work should be logged (usually yes for completion or significant progress/blockers).
     *   Instruct the mode: "Please log this work to `Memory_Bank.md` using the standard format."
 
-6.  **Switch Back to Manager & Review:**
-    *   **Switch back to Architect Mode** in Roo Cline.
-    *   Inform Architect Mode: "Task [Reference] has been completed and logged to `Memory_Bank.md`."
-    *   Architect Mode will review the logged work (using Roo's `read_file` tool to access the Memory Bank).
-    *   Architect Mode will provide its assessment and prepare the next task assignment.
+6.  **🚀 NEW: Automatic Handoff Generation:**
+    *   After logging, the Implementation Mode will **automatically generate a handoff prompt** for the next appropriate mode.
+    *   The mode will provide a complete, ready-to-use prompt in this format:
+    ```
+    TASK COMPLETE: [Summary]
+    
+    HANDOFF TO: [🪲 Debug Mode / 🏗️ Architect Mode / ❓ Ask Mode]
+    COPY PROMPT BELOW:
+    ================================
+    [Complete prompt for next mode]
+    ================================
+    ```
+    *   **Simply copy the provided prompt** and switch to the specified mode.
 
-7.  **Repeat:** Based on Architect Mode's review:
-    *   If successful, it will prepare the prompt for the *next* task.
-    *   If issues require correction, it will prepare a revised task assignment.
+7.  **Seamless Mode Transition:**
+    *   **Switch to the recommended mode** in Roo Cline.
+    *   **Paste the generated handoff prompt** - no manual prompt creation needed!
+    *   The new mode will have complete context and clear instructions.
+
+8.  **Repeat:** The cycle continues with each mode automatically generating handoffs:
+    *   Implementation modes create smart handoff prompts based on their work
+    *   No more manual coordination or prompt creation
+    *   Seamless transitions maintain project momentum
 
 ## Step 6: Handling Mode Context Management
 

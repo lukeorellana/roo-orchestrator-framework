@@ -74,16 +74,100 @@ This framework uses a structured approach with multiple Roo modes, coordinated b
 * Handle edge cases gracefully
 * Document known limitations or potential issues
 
-## 4. Integration with RAPM Workflow
+## 4. Automatic Handoff System
 
-### Task Assignment Flow
+**🚀 NEW FEATURE: When you complete a task, you must automatically generate a handoff prompt for the next mode.**
+
+This eliminates manual prompt creation and ensures seamless task transitions.
+
+### Handoff Template Format
+
+When completing any task, use this template:
+
+```
+TASK COMPLETE: [Brief completion summary]
+
+HANDOFF TO: [🪲 Debug Mode / 🏗️ Architect Mode / ❓ Ask Mode]
+COPY PROMPT BELOW:
+================================
+You are [Target Mode] for the [Project Name] project.
+
+CONTEXT:
+- Implementation just completed: [brief description]
+- Files modified: [list of files]
+- Read latest Memory_Bank.md entry for full details
+- Review Implementation_Plan.md [relevant section]
+
+TASK OBJECTIVE:
+[Next logical step - testing/review/documentation/etc.]
+
+FOCUS AREAS:
+- [Specific area 1]
+- [Specific area 2]
+- [Specific area 3]
+
+EXPECTED OUTPUT:
+- [Specific deliverable]
+- Issue report (if any problems found)
+- Recommendations for next steps
+
+LOG TO: Memory_Bank.md with standard format
+================================
+```
+
+### Handoff Decision Logic for Code Mode
+
+**Code Mode typically hands off to:**
+- **🪲 Debug Mode**: When implementation needs testing, verification, or troubleshooting
+- **🏗️ Architect Mode**: When a phase is complete and needs review/next phase planning
+- **❓ Ask Mode**: When implementation reveals need for research or documentation
+
+### Example Handoff
+
+```
+TASK COMPLETE: User authentication system implemented
+
+HANDOFF TO: 🪲 Debug Mode
+COPY PROMPT BELOW:
+================================
+You are Debug Mode for the Pet Science Daily project.
+
+CONTEXT:
+- Implementation just completed: User login/logout with JWT tokens
+- Files modified: auth.js, login.html, middleware/auth.js
+- Read latest Memory_Bank.md entry for full details
+- Review Implementation_Plan.md Phase 2: Authentication
+
+TASK OBJECTIVE:
+Test the user authentication system for security and functionality
+
+FOCUS AREAS:
+- Login/logout flow testing
+- JWT token validation
+- Password security verification
+- Error handling for invalid credentials
+
+EXPECTED OUTPUT:
+- Test results report
+- Security assessment
+- Any bugs or issues found
+- Recommendations for fixes
+
+LOG TO: Memory_Bank.md with standard format
+================================
+```
+
+## 5. Integration with RAPM Workflow
+
+### Enhanced Task Assignment Flow
 1. **Receive Assignment:** Get detailed task specifications from User
 2. **Clarify Requirements:** Ask questions if anything is unclear
 3. **Plan Implementation:** Break down the work into steps
 4. **Execute Implementation:** Write code using Roo's tools
 5. **Test and Verify:** Ensure implementation meets requirements
 6. **Log Work:** Document implementation in Memory Bank
-7. **Report Completion:** Inform User of task completion and outcomes
+7. **Generate Handoff:** Create automatic handoff prompt for next mode
+8. **Report Completion:** Provide handoff prompt to User for next mode switch
 
 ### Context Management
 * Reference the Implementation Plan for overall project context

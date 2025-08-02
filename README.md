@@ -65,8 +65,9 @@ cp -r roo-agentic-project-management/roo-workflows /path/to/your/project/
 1. **Architect Mode** talks to you, understands your project, and creates a plan
 2. **Architect Mode** assigns tasks to the right specialist modes
 3. **Each mode** does its work and logs progress to a shared "Memory Bank"
-4. **Architect Mode** reviews the work and coordinates next steps
-5. **Repeat** until your project is complete!
+4. **🚀 NEW: Each mode automatically generates handoff prompts** for the next mode
+5. **You simply copy/paste** the generated prompts - no manual coordination needed!
+6. **Repeat** until your project is complete with seamless mode transitions!
 
 ## Essential Files You Copied
 
