@@ -12,6 +12,8 @@ TASK COMPLETE: [Brief completion summary]
 HANDOFF TO: [Target Mode Icon & Name]
 COPY PROMPT BELOW:
 ================================
+[ALL CAPS TITLE FOR ROO TASK VIEW]
+
 [Complete prompt for next mode]
 ================================
 ```
@@ -28,6 +30,8 @@ TASK COMPLETE: [Planning phase/review completed]
 HANDOFF TO: [💻 Code Mode / 🪲 Debug Mode / ❓ Ask Mode / 🪃 Orchestrator Mode]
 COPY PROMPT BELOW:
 ================================
+[ALL CAPS TASK TITLE - E.G., "IMPLEMENT USER AUTHENTICATION SYSTEM"]
+
 You are [Target Mode] for the [Project Name] project.
 
 CONTEXT:
@@ -70,6 +74,8 @@ TASK COMPLETE: [Implementation summary - files created/modified]
 HANDOFF TO: [🪲 Debug Mode / 🏗️ Architect Mode / ❓ Ask Mode]
 COPY PROMPT BELOW:
 ================================
+[ALL CAPS TASK TITLE - E.G., "TEST DATABASE CONNECTION AND VALIDATE SCHEMA"]
+
 You are [Target Mode] for the [Project Name] project.
 
 CONTEXT:
@@ -103,6 +109,8 @@ TASK COMPLETE: [Implementation phase completed]
 HANDOFF TO: 🏗️ Architect Mode (Project Manager)
 COPY PROMPT BELOW:
 ================================
+[ALL CAPS TASK TITLE - E.G., "REVIEW IMPLEMENTATION AND PLAN NEXT PHASE"]
+
 You are the Project Manager (Architect Mode) for [Project Name].
 
 COMPLETED WORK:
@@ -138,6 +146,8 @@ TASK COMPLETE: [Debugging summary - issues found/fixed]
 HANDOFF TO: [💻 Code Mode / 🏗️ Architect Mode / ❓ Ask Mode]
 COPY PROMPT BELOW:
 ================================
+[ALL CAPS TASK TITLE - E.G., "IMPLEMENT FIXES FOR SECURITY VULNERABILITIES"]
+
 You are [Target Mode] for the [Project Name] project.
 
 DEBUGGING RESULTS:
@@ -176,6 +186,8 @@ TASK COMPLETE: [Research/documentation summary]
 HANDOFF TO: [💻 Code Mode / 🏗️ Architect Mode / 🪲 Debug Mode]
 COPY PROMPT BELOW:
 ================================
+[ALL CAPS TASK TITLE - E.G., "IMPLEMENT DATABASE MIGRATION SYSTEM"]
+
 You are [Target Mode] for the [Project Name] project.
 
 RESEARCH COMPLETED:
@@ -214,6 +226,8 @@ TASK COMPLETE: [Complex workflow summary]
 HANDOFF TO: [💻 Code Mode / 🪲 Debug Mode / ❓ Ask Mode / 🏗️ Architect Mode]
 COPY PROMPT BELOW:
 ================================
+[ALL CAPS TASK TITLE - E.G., "COMPLETE FRONTEND INTEGRATION TESTING"]
+
 You are [Target Mode] for the [Project Name] project.
 
 WORKFLOW COMPLETED:

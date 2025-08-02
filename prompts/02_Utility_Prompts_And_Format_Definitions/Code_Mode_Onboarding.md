@@ -90,6 +90,8 @@ TASK COMPLETE: [Brief completion summary]
 HANDOFF TO: [🪲 Debug Mode / 🏗️ Architect Mode / ❓ Ask Mode]
 COPY PROMPT BELOW:
 ================================
+[ALL CAPS TASK TITLE - E.G., "TEST USER AUTHENTICATION SYSTEM"]
+
 You are [Target Mode] for the [Project Name] project.
 
 CONTEXT:

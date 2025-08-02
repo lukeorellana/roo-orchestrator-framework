@@ -69,6 +69,8 @@ TASK COMPLETE: [Brief research/documentation summary]
 HANDOFF TO: [💻 Code Mode / 🏗️ Architect Mode / 🪲 Debug Mode]
 COPY PROMPT BELOW:
 ================================
+[ALL CAPS TASK TITLE - E.G., "IMPLEMENT DATABASE MIGRATION SYSTEM"]
+
 You are [Target Mode] for the [Project Name] project.
 
 RESEARCH COMPLETED:
@@ -112,6 +114,8 @@ TASK COMPLETE: Database migration strategy research completed
 HANDOFF TO: 💻 Code Mode
 COPY PROMPT BELOW:
 ================================
+IMPLEMENT DATABASE MIGRATION SYSTEM WITH ROLLBACK CAPABILITY
+
 You are Code Mode for the Pet Science Daily project.
 
 RESEARCH COMPLETED:

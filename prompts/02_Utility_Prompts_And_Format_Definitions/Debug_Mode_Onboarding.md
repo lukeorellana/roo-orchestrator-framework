@@ -69,6 +69,8 @@ TASK COMPLETE: [Brief debugging summary - issues found/resolved]
 HANDOFF TO: [💻 Code Mode / 🏗️ Architect Mode / ❓ Ask Mode]
 COPY PROMPT BELOW:
 ================================
+[ALL CAPS TASK TITLE - E.G., "IMPLEMENT FIXES FOR SQL INJECTION VULNERABILITY"]
+
 You are [Target Mode] for the [Project Name] project.
 
 DEBUGGING RESULTS:
@@ -112,6 +114,8 @@ TASK COMPLETE: Database connection testing completed - 2 issues found and resolv
 HANDOFF TO: 💻 Code Mode
 COPY PROMPT BELOW:
 ================================
+IMPLEMENT FIXES FOR SQL INJECTION VULNERABILITY
+
 You are Code Mode for the Pet Science Daily project.
 
 DEBUGGING RESULTS:
