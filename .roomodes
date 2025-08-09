@@ -1,0 +1,69 @@
+{
+  "modes": [
+    {
+      "name": "Orchestrator",
+      "description": "Plans next step, routes to Code/Debug/Ask, and maintains Memory/*.",
+      "systemPromptFile": "prompts/orchestrator.system.md",
+      "tools": [
+        "file",
+        "terminal",
+        "browser",
+        "mcp"
+      ],
+      "autoApprove": {
+        "read": true,
+        "write": true,
+        "terminal": false,
+        "browser": true
+      }
+    },
+    {
+      "name": "Code",
+      "description": "Implements the current handoff. Writes code and tests, then reports results.",
+      "systemPromptFile": "prompts/code.system.md",
+      "tools": [
+        "file",
+        "terminal",
+        "browser",
+        "mcp"
+      ],
+      "autoApprove": {
+        "read": true,
+        "write": true,
+        "terminal": false,
+        "browser": true
+      }
+    },
+    {
+      "name": "Debug",
+      "description": "Runs the app/tests, debugs failing acceptance tests, and reports results.",
+      "systemPromptFile": "prompts/debug.system.md",
+      "tools": [
+        "file",
+        "terminal",
+        "browser",
+        "mcp"
+      ],
+      "autoApprove": {
+        "read": true,
+        "write": true,
+        "terminal": false,
+        "browser": true
+      }
+    },
+    {
+      "name": "Ask",
+      "description": "Asks for missing info or decisions blocking progress and proposes options.",
+      "systemPromptFile": "prompts/ask.system.md",
+      "tools": [
+        "file",
+        "browser"
+      ],
+      "autoApprove": {
+        "read": true,
+        "write": true,
+        "browser": true
+      }
+    }
+  ]
+}
