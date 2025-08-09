@@ -2,13 +2,6 @@
 
 This fork packages an **Orchestrator-first** workflow for Roo so you don't have to copy/paste context between modes.
 
-## What changed
-- Added `.roomodes` with **Orchestrator**, **Code**, **Debug**, **Ask** modes.
-- Added strict **Handoff** and **Result** block formats.
-- Introduced append-only **Memory/handoffs.md** and **Memory/ledger.md**.
-- Included opinionated system prompts for each mode under `prompts/`.
-- Documented the flow in `roo-workflows/mode-coordination-patterns.md`.
-
 ## How to use
 1. Open this repo in VS Code with the Roo extension.
 2. Switch to **Orchestrator** mode.
