@@ -1,1 +1,3 @@
-YYYY-MM-DD HH:MMZ | bootstrap | repo initialized for orchestrated handoffs
+# Project Ledger
+> Ownership: Orchestrator only. Summarize notable RESULTS.
+---

@@ -1,3 +1,3 @@
-# Handoffs Log
-
-(Newest handoffs appended at the end)
+# Handoffs Ledger
+> Ownership: Orchestrator only. Append newest entries on top.
+---
