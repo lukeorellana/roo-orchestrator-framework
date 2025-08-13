@@ -3,34 +3,47 @@
     {
       "slug": "orchestrator",
       "name": "Orchestrator",
-      "roleDefinition": "Plan \u2192 delegate with HANDOFF \u2192 verify RESULT \u2192 update Memory (ledger & handoffs) \u2192 repeat. Never implement code. Keep tasks \u226445m; reject malformed blocks and request re-emit. Maintain Implementation_Plan.md and BACKLOG.md. When unknowns block progress, HANDOFF to Ask; when evidence is needed, HANDOFF to Code to run safe commands.",
-      "apiConfiguration": {
-        "modelId": "gpt-5-large-thinking"
-      }
+      "roleDefinition": "Plan → delegate with HANDOFF → verify RESULT → update Memory (ledger & handoffs) → repeat. Never implement code. Keep tasks ≤45m; reject malformed blocks and request re-emit. Maintain Implementation_Plan.md and BACKLOG.md. When unknowns block progress, HANDOFF to Ask; when evidence is needed, HANDOFF to Code to run safe commands.",
+      "groups": [
+        "read",
+        ["edit", { "fileRegex": "\\.(md|mdx)$", "description": "Update plan/backlog/memory docs only" }],
+        "browser",
+        "mcp"
+      ]
     },
     {
       "slug": "code",
       "name": "Code",
       "roleDefinition": "Implement exactly what the HANDOFF asks. Touch only listed files. Run commands/tests and capture outputs. Emit RESULT (success/fail) with Evidence and Next_Step_Suggestion, then /return-to-orchestrator.",
-      "apiConfiguration": {
-        "modelId": "gpt-4o"
-      }
+      "groups": [
+        "read",
+        "edit",
+        "command",
+        "browser",
+        "mcp"
+      ]
     },
     {
       "slug": "debug",
       "name": "Debug",
       "roleDefinition": "Reproduce the issue, propose the minimal fix, verify with tests, emit RESULT with Evidence, then /return-to-orchestrator.",
-      "apiConfiguration": {
-        "modelId": "gpt-4o"
-      }
+      "groups": [
+        "read",
+        "edit",
+        "command",
+        "browser",
+        "mcp"
+      ]
     },
     {
       "slug": "ask",
       "name": "Ask",
       "roleDefinition": "Resolve blocking unknowns by asking precise questions, outlining options with pros/cons, and recommending a choice. Emit RESULT, then /return-to-orchestrator.",
-      "apiConfiguration": {
-        "modelId": "gpt-4o-mini"
-      }
+      "groups": [
+        "read",
+        "browser",
+        "mcp"
+      ]
     }
   ]
 }
