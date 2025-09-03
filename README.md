@@ -26,14 +26,14 @@ Do the following atomically:
    - <temp>/.roo/commands/**                → .roo/commands/ (merge/overwrite)
    - <temp>/Implementation_Plan.md          → Implementation_Plan.md (only if missing)
    - <temp>/BACKLOG.md                      → BACKLOG.md (only if missing)
-   - <temp>/Memory/handoffs.md, ledger.md   → Memory/ (only if missing)
+   - <temp>/.roo-orchestrator/**            → .roo-orchestrator/ (merge/overwrite)
 4) Print a short “Bootstrap OK” report listing created/updated paths.
 5) Do NOT modify any other files.
 
 Acceptance checks (must pass):
 - `.roomodes` present in repo root and contains the custom modes.
 - `.roo/commands/` exists and includes the slash commands (e.g., init/handoff/result/return).
-- If missing before, `Implementation_Plan.md`, `BACKLOG.md`, and `Memory/{handoffs.md,ledger.md}` now exist.
+- If missing before, `Implementation_Plan.md`, `BACKLOG.md`, and `.roo-orchestrator/Memory/{handoffs.md,ledger.md}` now exist.
 - Final console output shows each path written.
 
 If shell access is unavailable, tell me exactly which commands to run for my OS instead of proceeding.
@@ -42,12 +42,12 @@ If shell access is unavailable, tell me exactly which commands to run for my OS 
 2. **Switch to Orchestrator mode** in Roo.
 3. **Initialize & interview:** run `/init-orchestrator`. It will:
    - Interview you in **3–4 rounds** (vision/scope → current state → architecture → roadmap).
-   - Create/refresh **Implementation_Plan.md** and seed **Memory/** entries.
+   - Create/refresh **Implementation_Plan.md** and seed **.roo-orchestrator/Memory/** entries.
    - Build a **BACKLOG.md** of ≤45-minute tasks with acceptance checks.
    - If unknowns block progress, it will HANDOFF to **Ask** with top questions; if evidence is needed, HANDOFF to **Code** to run safe commands and paste outputs.
 4. **Start the first tiny task:** run `/handoff-code`, describe a ≤45m objective, files, commands, and acceptance tests.
 5. **Code mode implements** and returns a **RESULT** block with evidence.
-6. **Orchestrator verifies evidence**, updates **Memory/** and the **BACKLOG**, then `/return-to-orchestrator` to continue the loop.
+6. **Orchestrator verifies evidence**, updates **.roo-orchestrator/Memory/** and the **BACKLOG**, then `/return-to-orchestrator` to continue the loop.
 7. Repeat until done.
 
 ## Handoff System
@@ -87,9 +87,22 @@ If shell access is unavailable, tell me exactly which commands to run for my OS 
 - <smallest next step>
 ```
 
+## Handoff v2 (JSON-first)
+Handoff v2 moves all contracts and results into canonical JSON files validated against strict schemas. Each handoff lives under `.roo-orchestrator/Memory/handoffs/H####.json` and updates an append-only `.roo-orchestrator/Memory/handoff_ledger.json`. A compact **Context Pack** keeps forwarded context under ~800 tokens while linking to additional detail.
+
+### Verification Gates & WIP
+Orchestrator validates every returned `result_envelope` against `.roo-orchestrator/schemas/result_envelope.schema.json`, checks each acceptance criterion, and ensures only `allowed_files` changed before updating the ledger. The ledger enforces a WIP limit of one active slice (ready queue ≤3) and records status and cycle time.
+
+### CI Validation
+`scripts/validate-handoff.mjs` and the `validate-handoffs.yml` workflow reject invalid JSON on pull requests. See the schemas for exact fields:
+- [`.roo-orchestrator/schemas/handoff_contract.schema.json`](.roo-orchestrator/schemas/handoff_contract.schema.json)
+- [`.roo-orchestrator/schemas/result_envelope.schema.json`](.roo-orchestrator/schemas/result_envelope.schema.json)
+
+Example handoff: [`.roo-orchestrator/Memory/handoffs/H0001.json`](.roo-orchestrator/Memory/handoffs/H0001.json)
+
 ## Project Memory
-- `Memory/handoffs.md` — Append-only log of handoffs and results
-- `Memory/ledger.md` — Summaries of notable results and decisions
+- `.roo-orchestrator/Memory/handoffs.md` — Append-only log of handoffs and results
+- `.roo-orchestrator/Memory/ledger.md` — Summaries of notable results and decisions
 - `Implementation_Plan.md` — Living plan (Orchestrator maintains)
 - `BACKLOG.md` — ≤45-minute tasks with acceptance checks
 
@@ -108,12 +121,12 @@ If shell access is unavailable, tell me exactly which commands to run for my OS 
 ## Best Practices
 - Keep each handoff ≤45 minutes; split bigger items into backlog tasks.
 - Always include **Acceptance_Tests** and require **Evidence** in RESULTs.
-- Orchestrator updates **Memory/** and **Implementation_Plan.md** continuously.
+- Orchestrator updates **.roo-orchestrator/Memory/** and **Implementation_Plan.md** continuously.
 
 ## Troubleshooting
 - Handoffs not triggering? Ensure you used the slash command templates.
 - Modes not switching? Use `/return-to-orchestrator` after a RESULT.
-- Missing context? Check `Memory/handoffs.md`, `Memory/ledger.md`, and `Implementation_Plan.md`.
+- Missing context? Check `.roo-orchestrator/Memory/handoffs.md`, `.roo-orchestrator/Memory/ledger.md`, and `Implementation_Plan.md`.
 
 ---
 This framework eliminates copy/paste and gives you APM-like orchestration—inside Roo.

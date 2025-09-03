@@ -1,0 +1,47 @@
+{
+  "$id": "result_envelope.schema.json",
+  "type": "object",
+  "required": [
+    "contract_id","from_mode","to_mode","status","summary",
+    "files_changed","diffs_summary","commands_ran",
+    "tests","acceptance_check","artifacts_updated",
+    "verification_evidence","next_step_suggestion","finished_at"
+  ],
+  "properties": {
+    "contract_id": {"type": "string"},
+    "from_mode": {"type": "string"},
+    "to_mode": {"type": "string"},
+    "status": {"type": "string", "enum": ["success","fail","blocked"]},
+    "summary": {"type": "string"},
+    "files_changed": {"type": "array", "items": {"type": "string"}},
+    "diffs_summary": {"type": "string"},
+    "commands_ran": {
+      "type": "array",
+      "items": {"type": "object",
+        "required": ["cmd","exit_code","out","err"],
+        "properties": {
+          "cmd": {"type": "string"},
+          "exit_code": {"type": "integer"},
+          "out": {"type": "string"},
+          "err": {"type": "string"}
+        }
+      }
+    },
+    "tests": {
+      "type": "array",
+      "items": {"type": "object",
+        "required": ["name","result"],
+        "properties": {"name":{"type":"string"},"result":{"type":"string"},"notes":{"type":"string"}}
+      }
+    },
+    "acceptance_check": {
+      "type": "object",
+      "required": ["met","notes"],
+      "properties": {"met": {"type": "boolean"}, "notes": {"type": "string"}}
+    },
+    "artifacts_updated": {"type": "array", "items": {"type": "string"}},
+    "verification_evidence": {"type": "string"},
+    "next_step_suggestion": {"type": "string"},
+    "finished_at": {"type": "string"}
+  }
+}
