@@ -1,0 +1,32 @@
+{
+  "$id": "roo_policy.schema.json",
+  "type": "object",
+  "required": ["groups", "protected", "defaults"],
+  "properties": {
+    "groups": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "array",
+        "items": { "type": "string" }
+      }
+    },
+    "protected": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "defaults": {
+      "type": "object",
+      "required": ["tests_for_group", "max_files_per_slice"],
+      "properties": {
+        "tests_for_group": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        },
+        "max_files_per_slice": { "type": "integer", "minimum": 1 }
+      }
+    }
+  }
+}

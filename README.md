@@ -100,6 +100,18 @@ Orchestrator validates every returned `result_envelope` against `.roo-orchestrat
 
 Example handoff: [`.roo-orchestrator/Memory/handoffs/H0001.json`](.roo-orchestrator/Memory/handoffs/H0001.json)
 
+## Repo Policy Allowlist
+`roo.policy.json` defines editable path **groups**, forbidden **protected** globs, and default test commands. Architects may reference `@group:<name>` in `allowed_files` and `context_pack.active_files`, and `@tests:<name>` in `context_pack.tests_to_run`. The Orchestrator expands these tokens, enforces `protected` paths, and checks `defaults.max_files_per_slice`.
+
+```json
+{
+  "allowed_files": ["@group:web_server", "@group:auth_tests"],
+  "context_pack": { "tests_to_run": ["@tests:web_server"] }
+}
+```
+
+Edit `roo.policy.json` to suit your project; CI runs `node scripts/validate-policy.mjs` to ensure it matches `.roo-orchestrator/schemas/roo_policy.schema.json`. See `.roo-orchestrator/Memory/handoffs/H0002.json` for a full example handoff using groups.
+
 ## Project Memory
 - `.roo-orchestrator/Memory/handoffs.md` — Append-only log of handoffs and results
 - `.roo-orchestrator/Memory/ledger.md` — Summaries of notable results and decisions

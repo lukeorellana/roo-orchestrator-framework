@@ -1,0 +1,28 @@
+{
+  "$schema": "./.roo-orchestrator/schemas/roo_policy.schema.json",
+  "groups": {
+    "auth_src": ["src/auth/**/*.ts"],
+    "auth_tests": ["tests/auth/**/*.ts"],
+    "web_server": ["src/server/**/*.{ts,tsx}", "public/**/*"],
+    "docs_only": ["docs/**/*", "**/*.md"],
+    "ci": [".github/workflows/**/*.yml"]
+  },
+  "protected": [
+    "**/.env*",
+    "secrets/**",
+    "infra/terraform/**",
+    "deploy/**",
+    "package-lock.json",
+    "yarn.lock",
+    "Cargo.lock"
+  ],
+  "defaults": {
+    "tests_for_group": {
+      "auth_src": ["npm test -w auth --silent"],
+      "auth_tests": ["npm test -w auth --silent"],
+      "web_server": ["npm test -w web --silent"],
+      "ci": ["echo 'CI dry-run placeholder'"]
+    },
+    "max_files_per_slice": 3
+  }
+}
