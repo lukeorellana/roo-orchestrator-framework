@@ -1,0 +1,50 @@
+{
+  "$id": "handoff_contract.schema.json",
+  "type": "object",
+  "required": [
+    "contract_id", "version", "created_at", "from_mode", "to_mode",
+    "title", "objective", "dispatch_mode", "scope", "allowed_files",
+    "entry_point", "constraints", "acceptance_criteria", "tools_allowed",
+    "artifacts_to_update", "context_pack", "trace"
+  ],
+  "properties": {
+    "contract_id": {"type": "string"},
+    "parent_contract_id": {"type": "string"},
+    "version": {"type": "string", "const": "2.0"},
+    "ttl_runs": {"type": "integer", "minimum": 1, "default": 2},
+    "created_at": {"type": "string"},
+    "from_mode": {"type": "string"},
+    "to_mode": {"type": "string", "enum": ["code-fast","code","debug-fast","debug","ask"]},
+    "title": {"type": "string"},
+    "objective": {"type": "string"},
+    "dispatch_mode": {"type": "string"},
+    "scope": {"type": "array", "items": {"type": "string"}},
+    "allowed_files": {"type": "array", "items": {"type": "string"}},
+    "entry_point": {"type": "string"},
+    "constraints": {"type": "array", "items": {"type": "string"}},
+    "acceptance_criteria": {"type": "array", "items": {"type": "string"}},
+    "tools_allowed": {"type": "array", "items": {"type": "string"}},
+    "artifacts_to_update": {"type": "array", "items": {"type": "string"}},
+    "context_pack": {
+      "type": "object",
+      "required": ["goal","constraints","acceptance_criteria","active_files","delta_digest","tests_to_run"],
+      "properties": {
+        "goal": {"type": "string"},
+        "constraints": {"type": "array", "items": {"type": "string"}},
+        "acceptance_criteria": {"type": "array", "items": {"type": "string"}},
+        "active_files": {"type": "array", "items": {"type": "string"}},
+        "delta_digest": {"type": "string"},
+        "tests_to_run": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "trace": {
+      "type": "object",
+      "required": ["issue_ref","commit_ref"],
+      "properties": {
+        "issue_ref": {"type": "string"},
+        "commit_ref": {"type": "string"}
+      }
+    },
+    "notes": {"type": "string"}
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "contract_id": "H0001",
+  "from_mode": "code-fast",
+  "to_mode": "orchestrator",
+  "status": "success",
+  "summary": "Extracted refresh helper; added unit tests; all green.",
+  "files_changed": ["src/auth/refresh.ts", "tests/auth/refresh.test.ts"],
+  "diffs_summary": "New file + test; no external API changes.",
+  "commands_ran": [
+    {"cmd":"npm test -w auth --silent","exit_code":0,"out":"ok 12 - auth suite","err":""}
+  ],
+  "tests": [{"name":"auth refresh path","result":"pass","notes":"covers 401→refresh→retry"}],
+  "acceptance_check": {"met": true, "notes": "criteria satisfied"},
+  "artifacts_updated": ["Implementation_Plan.md", ".roo-orchestrator/Memory/handoff_ledger.json"],
+  "verification_evidence": "diffstat + test output tail attached",
+  "next_step_suggestion": "Ship next slice: add retry backoff metric.",
+  "finished_at": "2025-09-03T13:23:00Z"
+}

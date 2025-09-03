@@ -1,0 +1,18 @@
+name: Validate Handoffs
+on:
+  pull_request:
+    paths:
+      - ".roo-orchestrator/schemas/**"
+      - ".roo-orchestrator/Memory/handoffs/**"
+      - "scripts/validate-handoff.mjs"
+      - ".github/workflows/validate-handoffs.yml"
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - run: npm i -D ajv ajv-formats
+      - run: node scripts/validate-handoff.mjs
