@@ -1,0 +1,29 @@
+{
+  "contract_id": "H0002",
+  "version": "2.0",
+  "from_mode": "architect",
+  "to_mode": "code-fast",
+  "title": "Add /health endpoint",
+  "objective": "Expose GET /health returning 200 OK.",
+  "dispatch_mode": "code-fast",
+  "scope": ["Create handler", "Add unit test"],
+  "allowed_files": ["@group:web_server", "@group:auth_tests"],
+  "entry_point": "npm test -w web --silent",
+  "constraints": ["≤45m", "no scope creep"],
+  "acceptance_criteria": [
+    "GET /health returns 200",
+    "`npm test -w web` exits 0"
+  ],
+  "tools_allowed": ["read", "edit", "command"],
+  "artifacts_to_update": ["Implementation_Plan.md", ".roo-orchestrator/Memory/handoff_ledger.json"],
+  "context_pack": {
+    "goal": "K8s liveness probe.",
+    "constraints": ["no perf regressions >2%"],
+    "acceptance_criteria": ["as above"],
+    "active_files": ["@group:web_server", "@group:auth_tests"],
+    "delta_digest": "no pending diffs",
+    "tests_to_run": ["@tests:web_server"]
+  },
+  "trace": {"issue_ref": "OPS-42", "commit_ref": "<sha>"},
+  "ttl_runs": 2
+}
