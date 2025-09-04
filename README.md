@@ -25,14 +25,12 @@ Do the following atomically:
    - <temp>/.roomodes                       → .roomodes   (overwrite)
    - <temp>/.roo/commands/**                → .roo/commands/ (merge/overwrite)
    - <temp>/.roo-orchestrator/**            → .roo-orchestrator/ (merge/overwrite)
-   - ensures `.roo-orchestrator/Memory/` with `Implementation_Plan.md`, `BACKLOG.md`, `handoffs.md`, and `ledger.md`
 4) Print a short “Bootstrap OK” report listing created/updated paths.
 5) Do NOT modify any other files.
 
 Acceptance checks (must pass):
 - `.roomodes` present in repo root and contains the custom modes.
 - `.roo/commands/` exists and includes the slash commands (e.g., init/handoff/result/return).
-- If missing before, `.roo-orchestrator/Memory/{Implementation_Plan.md,BACKLOG.md,handoffs.md,ledger.md}` now exist.
 - Final console output shows each path written.
 
 If shell access is unavailable, tell me exactly which commands to run for my OS instead of proceeding.
