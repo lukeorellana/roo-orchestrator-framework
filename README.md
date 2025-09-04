@@ -24,8 +24,6 @@ Do the following atomically:
 3) Copy into the current repo root:
    - <temp>/.roomodes                       → .roomodes   (overwrite)
    - <temp>/.roo/commands/**                → .roo/commands/ (merge/overwrite)
-   - <temp>/Implementation_Plan.md          → Implementation_Plan.md (only if missing)
-   - <temp>/BACKLOG.md                      → BACKLOG.md (only if missing)
    - <temp>/.roo-orchestrator/**            → .roo-orchestrator/ (merge/overwrite)
 4) Print a short “Bootstrap OK” report listing created/updated paths.
 5) Do NOT modify any other files.
@@ -33,7 +31,6 @@ Do the following atomically:
 Acceptance checks (must pass):
 - `.roomodes` present in repo root and contains the custom modes.
 - `.roo/commands/` exists and includes the slash commands (e.g., init/handoff/result/return).
-- If missing before, `Implementation_Plan.md`, `BACKLOG.md`, and `.roo-orchestrator/Memory/{handoffs.md,ledger.md}` now exist.
 - Final console output shows each path written.
 
 If shell access is unavailable, tell me exactly which commands to run for my OS instead of proceeding.
@@ -42,12 +39,12 @@ If shell access is unavailable, tell me exactly which commands to run for my OS 
 2. **Switch to Orchestrator mode** in Roo.
 3. **Initialize & interview:** run `/init-orchestrator`. It will:
    - Interview you in **3–4 rounds** (vision/scope → current state → architecture → roadmap).
-   - Create/refresh **Implementation_Plan.md** and seed **.roo-orchestrator/Memory/** entries.
-   - Build a **BACKLOG.md** of ≤45-minute tasks with acceptance checks.
+   - Create/refresh **.roo-orchestrator/Memory/Implementation_Plan.md** and seed **.roo-orchestrator/Memory/** entries.
+   - Build **.roo-orchestrator/Memory/BACKLOG.md** of ≤45-minute tasks with acceptance checks.
    - If unknowns block progress, it will HANDOFF to **Ask** with top questions; if evidence is needed, HANDOFF to **Code** to run safe commands and paste outputs.
 4. **Start the first tiny task:** run `/handoff-code`, describe a ≤45m objective, files, commands, and acceptance tests.
 5. **Code mode implements** and returns a **RESULT** block with evidence.
-6. **Orchestrator verifies evidence**, updates **.roo-orchestrator/Memory/** and the **BACKLOG**, then `/return-to-orchestrator` to continue the loop.
+6. **Orchestrator verifies evidence**, updates **.roo-orchestrator/Memory/** and **.roo-orchestrator/Memory/BACKLOG.md**, then `/return-to-orchestrator` to continue the loop.
 7. Repeat until done.
 
 ## Handoff System
@@ -103,8 +100,8 @@ Example handoff: [`.roo-orchestrator/Memory/handoffs/H0001.json`](.roo-orchestra
 ## Project Memory
 - `.roo-orchestrator/Memory/handoffs.md` — Append-only log of handoffs and results
 - `.roo-orchestrator/Memory/ledger.md` — Summaries of notable results and decisions
-- `Implementation_Plan.md` — Living plan (Orchestrator maintains)
-- `BACKLOG.md` — ≤45-minute tasks with acceptance checks
+- `.roo-orchestrator/Memory/Implementation_Plan.md` — Living plan (Orchestrator maintains)
+- `.roo-orchestrator/Memory/BACKLOG.md` — ≤45-minute tasks with acceptance checks
 
 ## Modes & Config
 - `.roomodes` defines the four custom modes and guardrails (≤45m scope, format enforcement, memory updates).
@@ -121,12 +118,12 @@ Example handoff: [`.roo-orchestrator/Memory/handoffs/H0001.json`](.roo-orchestra
 ## Best Practices
 - Keep each handoff ≤45 minutes; split bigger items into backlog tasks.
 - Always include **Acceptance_Tests** and require **Evidence** in RESULTs.
-- Orchestrator updates **.roo-orchestrator/Memory/** and **Implementation_Plan.md** continuously.
+- Orchestrator updates **.roo-orchestrator/Memory/** and **.roo-orchestrator/Memory/Implementation_Plan.md** continuously.
 
 ## Troubleshooting
 - Handoffs not triggering? Ensure you used the slash command templates.
 - Modes not switching? Use `/return-to-orchestrator` after a RESULT.
-- Missing context? Check `.roo-orchestrator/Memory/handoffs.md`, `.roo-orchestrator/Memory/ledger.md`, and `Implementation_Plan.md`.
+- Missing context? Check `.roo-orchestrator/Memory/handoffs.md`, `.roo-orchestrator/Memory/ledger.md`, and `.roo-orchestrator/Memory/Implementation_Plan.md`.
 
 ---
 This framework eliminates copy/paste and gives you APM-like orchestration—inside Roo.

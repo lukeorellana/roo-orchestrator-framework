@@ -11,7 +11,7 @@
   ],
   "tests": [{"name":"auth refresh path","result":"pass","notes":"covers 401→refresh→retry"}],
   "acceptance_check": {"met": true, "notes": "criteria satisfied"},
-  "artifacts_updated": ["Implementation_Plan.md", ".roo-orchestrator/Memory/handoff_ledger.json"],
+  "artifacts_updated": [".roo-orchestrator/Memory/Implementation_Plan.md", ".roo-orchestrator/Memory/handoff_ledger.json"],
   "verification_evidence": "diffstat + test output tail attached",
   "next_step_suggestion": "Ship next slice: add retry backoff metric.",
   "finished_at": "2025-09-03T13:23:00Z"

@@ -16,7 +16,7 @@
     "No public API diff in docs/api.md"
   ],
   "tools_allowed": ["read", "edit", "command"],
-  "artifacts_to_update": ["Implementation_Plan.md", ".roo-orchestrator/Memory/handoff_ledger.json"],
+  "artifacts_to_update": [".roo-orchestrator/Memory/Implementation_Plan.md", ".roo-orchestrator/Memory/handoff_ledger.json"],
   "context_pack": {
     "goal": "Improve testability and logging around token refresh.",
     "constraints": ["no performance regressions >2%"],
