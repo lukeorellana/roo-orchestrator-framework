@@ -40,21 +40,21 @@ Ask:
 4) Any non-negotiables (stakeholder promises, demo dates, contracts)?
 
 ## Produce (after interview)
-1) **Memory/Implementation_Plan.md** — include:
+1) **.roo-orchestrator/Memory/Implementation_Plan.md** — include:
    - Goals, Constraints
    - Deliverables (with acceptance criteria)
    - Work Breakdown by Milestone → Tasks (each task with guiding notes)
    - Ownership: which Roo mode (Code/Debug/Ask) is expected to execute
-2) **Memory/BACKLOG.md** — prioritized list of ≤45-minute tasks, with **Acceptance** checks.
-3) **Memory/ledger.md** — init summary (what we learned, decisions taken).
-4) **Memory/handoffs.md** — if unknowns remain, **HANDOFF to Ask** with top questions.
+2) **.roo-orchestrator/Memory/BACKLOG.md** — prioritized list of ≤45-minute tasks, with **Acceptance** checks.
+3) **.roo-orchestrator/Memory/ledger.md** — init summary (what we learned, decisions taken).
+4) **.roo-orchestrator/Memory/handoffs.md** — if unknowns remain, **HANDOFF to Ask** with top questions.
 5) If evidence is needed (tree, tests, configs), emit a **HANDOFF to Code** to run safe commands and paste outputs back.
 
 ## Acceptance (for Orchestrator to self-check)
 - [ ] Interview completed in ≤4 rounds
-- [ ] Memory/Implementation_Plan.md created/updated
-- [ ] Memory/BACKLOG.md created with ≤45-minute tasks
-- [ ] Memory files updated
+- [ ] .roo-orchestrator/Memory/Implementation_Plan.md created/updated
+- [ ] .roo-orchestrator/Memory/BACKLOG.md created with ≤45-minute tasks
+- [ ] .roo-orchestrator/Memory files updated
 - [ ] Handoff(s) created if unknowns block the next step
 
 ## Next Step

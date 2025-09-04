@@ -1,1 +1,1 @@
-Update Memory/handoffs.md, Memory/ledger.md, and Memory/BACKLOG.md with this RESULT, then switch to Orchestrator mode.
+Update .roo-orchestrator/Memory/handoffs.md, .roo-orchestrator/Memory/ledger.md, and .roo-orchestrator/Memory/BACKLOG.md with this RESULT, then switch to Orchestrator mode.
