@@ -37,11 +37,11 @@ If shell access is unavailable, tell me exactly which commands to run for my OS 
 
 ```
 2. **Switch to Orchestrator mode** in Roo.
-3. **Initialize & interview:** run `/init-orchestrator`. It will:
-   - Interview you in **3–4 rounds** (vision/scope → current state → architecture → roadmap).
-   - Create/refresh **.roo-orchestrator/Memory/Implementation_Plan.md** and seed **.roo-orchestrator/Memory/** entries.
+3. **Initialize & interview:** run `/init-architecture`. It will:
+   - Run 🧭 Product Architect, 🎨 UX Architect, and 🏗️ Solution Architect in sequence to produce kickoff docs and stack rules.
+   - Switch to Orchestrator to create **.roo-orchestrator/Memory/Implementation_Plan.md** and seed **.roo-orchestrator/Memory/** entries.
    - Build **.roo-orchestrator/Memory/BACKLOG.md** of ≤45-minute tasks with acceptance checks.
-   - If unknowns block progress, it will HANDOFF to **Ask** with top questions; if evidence is needed, HANDOFF to **Code** to run safe commands and paste outputs.
+   - If unknowns block progress, it will HANDOFF to **Ask** or **Code** as needed.
 4. **Start the first tiny task:** run `/handoff-code`, describe a ≤45m objective, files, commands, and acceptance tests.
 5. **Code mode implements** and returns a **RESULT** block with evidence.
 6. **Orchestrator verifies evidence**, updates **.roo-orchestrator/Memory/** and **.roo-orchestrator/Memory/BACKLOG.md**, then `/return-to-orchestrator` to continue the loop.
@@ -108,7 +108,7 @@ Example handoff: [`.roo-orchestrator/Memory/handoffs/H0001.json`](.roo-orchestra
 - `.roo/commands/` provides slash commands to insert exact blocks and switch modes.
 
 ### Slash Commands (Reference)
-- `/init-orchestrator` — APM-style multi-round interview + plan/backlog/memory
+- `/init-architecture` — runs Product/UX/Solution Architect sequence then hands off to Orchestrator for planning
 - `/handoff-code` — delegate a small implementation task
 - `/handoff-debug` — delegate a diagnosis/fix
 - `/handoff-ask` — delegate clarification
@@ -128,18 +128,18 @@ Example handoff: [`.roo-orchestrator/Memory/handoffs/H0001.json`](.roo-orchestra
 ---
 This framework eliminates copy/paste and gives you APM-like orchestration—inside Roo.
 
-## Architect Kickoff (Init Replacement)
+## Architect Kickoff (`/init-architecture`)
 
-This repo replaces the original "init orchestrator" with three dedicated **Architect modes**:
+This repo adds an `/init-architecture` command that runs three dedicated **Architect modes** before handing off to the main Orchestrator:
 
-1. **🧭 Product Architect** — runs a 12‑question kickoff and writes `docs/PRD.md` + `docs/Assumptions.md`  
-2. **🎨 UX Architect** — derives flows and writes `docs/UX-Brief.md` + `docs/Acceptance-Criteria.md`  
+1. **🧭 Product Architect** — runs a 12‑question kickoff and writes `docs/PRD.md` + `docs/Assumptions.md`
+2. **🎨 UX Architect** — derives flows and writes `docs/UX-Brief.md` + `docs/Acceptance-Criteria.md`
 3. **🏗️ Solution Architect** — selects the tech stack, writes `docs/ImplementationGuide.md` + `docs/Tech-Choices.md`, and generates stack‑specific rules for the built‑in `code` mode under `.roo/rules-code/`
 
-**How to start:**  
-- Switch to **🧭 Product Architect**, answer the kickoff once.  
-- Then **🎨 UX Architect**, then **🏗️ Solution Architect**.  
+**How to start:**
+- Run `/init-architecture` in **Orchestrator** mode and answer the 🧭 Product Architect kickoff.
+- The flow will continue through **🎨 UX Architect** and **🏗️ Solution Architect**, then return to **Orchestrator**.
 - After that, use normal **Code** mode; it will follow the generated rules.
 
-**Credits:** Big kudos to Switch Dimension for the inspiration and excellent write‑up on AI project setup.  
+**Credits:** Big kudos to Switch Dimension for the inspiration and excellent write‑up on AI project setup.
 Read the guide: <https://notes.switchdimension.com/AI-Dev-Project-Setup-Prompts-18fb5b07a94380758bd6e92baa5e8c98>
