@@ -127,3 +127,19 @@ Example handoff: [`.roo-orchestrator/Memory/handoffs/H0001.json`](.roo-orchestra
 
 ---
 This framework eliminates copy/paste and gives you APM-like orchestration—inside Roo.
+
+## Architect Kickoff (Init Replacement)
+
+This repo replaces the original "init orchestrator" with three dedicated **Architect modes**:
+
+1. **🧭 Product Architect** — runs a 12‑question kickoff and writes `docs/PRD.md` + `docs/Assumptions.md`  
+2. **🎨 UX Architect** — derives flows and writes `docs/UX-Brief.md` + `docs/Acceptance-Criteria.md`  
+3. **🏗️ Solution Architect** — selects the tech stack, writes `docs/ImplementationGuide.md` + `docs/Tech-Choices.md`, and generates stack‑specific rules for the built‑in `code` mode under `.roo/rules-code/`
+
+**How to start:**  
+- Switch to **🧭 Product Architect**, answer the kickoff once.  
+- Then **🎨 UX Architect**, then **🏗️ Solution Architect**.  
+- After that, use normal **Code** mode; it will follow the generated rules.
+
+**Credits:** Big kudos to Switch Dimension for the inspiration and excellent write‑up on AI project setup.  
+Read the guide: <https://notes.switchdimension.com/AI-Dev-Project-Setup-Prompts-18fb5b07a94380758bd6e92baa5e8c98>
