@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SliceHandoff",
+  "type": "object",
+  "required": ["title", "acceptance", "plan"],
+  "properties": {
+    "title": { "type": "string", "minLength": 5 },
+    "acceptance": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 8,
+      "items": { "type": "string" }
+    },
+    "plan": {
+      "type": "object",
+      "required": ["files", "command", "artifact"],
+      "properties": {
+        "files": { "type": "array", "minItems": 1, "maxItems": 2, "items": { "type": "string" } },
+        "command": { "type": "string" },
+        "artifact": { "type": "string" }
+      }
+    }
+  }
+}

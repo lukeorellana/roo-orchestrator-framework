@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SliceResult",
+  "type": "object",
+  "required": ["status", "evidence"],
+  "properties": {
+    "status": { "type": "string", "enum": ["success", "fail", "blocked"] },
+    "evidence": {
+      "type": "object",
+      "required": ["logs"],
+      "properties": { "logs": { "type": "string", "minLength": 10 } }
+    }
+  }
+}
