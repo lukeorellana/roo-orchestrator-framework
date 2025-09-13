@@ -1,18 +1,20 @@
 # Roo Architect Trunk Pack
 
-This repository provides three kickoff Architect modes and lightweight Code-mode rules for a trunk-based, slice-first workflow in Roo.
+This repository provides an Orchestrator plus three kickoff Architect modes and lightweight Code-mode rules for a trunk-based, slice-first workflow in Roo.
 
 ## Architect Kickoff
-Use these modes at project start or major pivots to generate docs and stack rules under `.roo-orchestrator/` and `.roo/`:
+Run `/init-architecture` at project start or major pivots to generate docs under `docs/` and stack rules in `.roo/`:
 
-1. **🧭 Product Architect** — writes `.roo-orchestrator/docs/PRD.md` and `.roo-orchestrator/docs/Assumptions.md`
-2. **🎨 UX Architect** — writes `.roo-orchestrator/docs/UX-Brief.md` and `.roo-orchestrator/docs/Acceptance-Criteria.md`
-3. **🏗️ Solution Architect** — writes `.roo-orchestrator/docs/ImplementationGuide.md` and `.roo-orchestrator/docs/Tech-Choices.md`, and (re)generates stack rules in `.roo/rules-code/`
+1. **🧭 Product Architect** — writes `docs/PRD.md` and `docs/Assumptions.md`
+2. **🎨 UX Architect** — writes `docs/UX-Brief.md` and `docs/Acceptance-Criteria.md`
+3. **🏗️ Solution Architect** — writes `docs/ImplementationGuide.md` and `docs/Tech-Choices.md`, and (re)generates stack rules in `.roo/rules-code/`
+
+After the kickoff sequence, the Orchestrator takes over to plan and delegate slices.
 
 ## Trunk-Based Slice Workflow
 
 Daily coding uses **Code mode** plus a tiny slice contract:
-1) Write 3–8 Acceptance Criteria bullets in `.roo-orchestrator/docs/Acceptance-Criteria.md`.
+1) Write 3–8 Acceptance Criteria bullets in `docs/Acceptance-Criteria.md`.
 2) Plan in 3 lines: **Files** (1–2), **Command** (`make quickcheck`), **Artifact** (one file/result).
 3) Ask Code mode to add tests first, make the smallest change, and run the command.
 4) Commit to trunk in small, green steps.
