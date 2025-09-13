@@ -1,129 +1,44 @@
-# Roo Orchestrator Framework (APM-style for Roo)
+# spec-driven-development
 
-A Roo-native orchestration workflow that mirrors Agentic Project Management (APM): Orchestrator plans and delegates; specialist modes implement, debug, or ask; results are verified and logged, and the loop repeats.
+Spec-first, test-gated AI coding with Roo.
 
-## What This Does
-- Turns Roo into a multi-mode system with **Orchestrator / Code / Debug / Ask**.
-- Standardizes **HANDOFF** and **RESULT** blocks so agents interoperate without copy/paste.
-- Maintains project memory and a living plan to keep momentum and traceability.
+**Loop:** AC → Plan → Tests-first → Minimal code → One command → Evidence → Commit to trunk.
 
-## Prerequisites
-- VS Code with the Roo extension
-- A repo you want to work in (tests recommended but not required)
+## Why
+- Clear “done” up front (Acceptance Criteria).
+- Small, green, trunk-friendly commits.
+- Lower token spend and less rework.
 
-## Quick Start
+## How to use
 
-1. Paste this prompt into Roo task to have Agent bootstrap folders into your project repo:
-```
-System objective: Bootstrap this repo with the Roo Orchestrator Framework.
+1) **Run Architects once** (Product → UX → Solution) to generate `docs/`:
+   - 🖽️ Product Architect → `docs/PRD.md`, `docs/Assumptions.md`
+   - 🎨 UX Architect → `docs/UX-Brief.md`, `docs/Acceptance-Criteria.md`
+   - 🏗️ Solution Architect → `docs/ImplementationGuide.md`, `docs/Tech-Choices.md` and (optionally) stack-specific `.roo/rules-code/*`
+   - Also maintains `docs/Slice-Backlog.md` (rolling-wave backlog).
 
-Do the following atomically:
-1) Detect OS (macOS/Linux or Windows PowerShell).
-2) In a temp directory, run:
-   git clone https://github.com/lukeorellana/roo-orchestrator-framework <temp>
-3) Copy into the current repo root:
-   - <temp>/.roomodes                       → .roomodes   (overwrite)
-   - <temp>/.roo/commands/**                → .roo/commands/ (merge/overwrite)
-   - <temp>/.roo-orchestrator/**            → .roo-orchestrator/ (merge/overwrite)
-4) Print a short “Bootstrap OK” report listing created/updated paths.
-5) Do NOT modify any other files.
+2) **Create a slice spec fast**:
+   - Switch to **📝 Slice Spec Writer** mode.
+   - Give a one-line goal (e.g., “TypeORM DataSource using Azure AD token”).
+   - It writes a new section in `docs/Acceptance-Criteria.md` with:
+     - 3–8 AC bullets
+     - 3-line Plan (Files 1–2, one Command, one Artifact)
+     - Updates `docs/Slice-Backlog.md` if present.
 
-Acceptance checks (must pass):
-- `.roomodes` present in repo root and contains the custom modes.
-- `.roo/commands/` exists and includes the slash commands (e.g., init/handoff/result/return).
-- Final console output shows each path written.
+3) **Execute the slice**:
+   - Switch to **Code** mode.
+   - Code mode enforces the gate (see `.roo/rules-code/99-preflight.md`):
+     - If AC/Plan missing → replies **BLOCKED** and gives a template.
+     - If AC were only in chat → auto-creates/updates `docs/Acceptance-Criteria.md`.
+     - Tests-first → minimal change → run **one command** → show trimmed logs.
+   - Make a small trunk commit.
 
-If shell access is unavailable, tell me exactly which commands to run for my OS instead of proceeding.
+4) **Repeat**
+   - New chat per slice.
+   - Let Solution Architect refresh `docs/Slice-Backlog.md` when scope changes.
 
-```
-2. **Switch to Orchestrator mode** in Roo.
-3. **Initialize & interview:** run `/init-orchestrator`. It will:
-   - Interview you in **3–4 rounds** (vision/scope → current state → architecture → roadmap).
-   - Create/refresh **.roo-orchestrator/Memory/Implementation_Plan.md** and seed **.roo-orchestrator/Memory/** entries.
-   - Build **.roo-orchestrator/Memory/BACKLOG.md** of ≤45-minute tasks with acceptance checks.
-   - If unknowns block progress, it will HANDOFF to **Ask** with top questions; if evidence is needed, HANDOFF to **Code** to run safe commands and paste outputs.
-4. **Start the first tiny task:** run `/handoff-code`, describe a ≤45m objective, files, commands, and acceptance tests.
-5. **Code mode implements** and returns a **RESULT** block with evidence.
-6. **Orchestrator verifies evidence**, updates **.roo-orchestrator/Memory/** and **.roo-orchestrator/Memory/BACKLOG.md**, then `/return-to-orchestrator` to continue the loop.
-7. Repeat until done.
+### Slice Backlog
+`docs/Slice-Backlog.md` is owned by Solution Architect. Keep ~12–20 small slices, with the top 5 fully specified (ready blocks).
 
-## Handoff System
-**Orchestrator → Target (HANDOFF)**
-```
-<!-- HANDOFF: target=Code; return=Orchestrator -->
-## Objective
-<≤45m objective>
-
-## Files_To_Touch
-- <paths>
-
-## Commands
-- <cmds>
-
-## Acceptance_Tests
-- [ ] <check 1>
-- [ ] <check 2>
-
-## Context_Short
-- <bullets>
-```
-
-**Target → Orchestrator (RESULT)**
-```
-<!-- RESULT: from=Code; to=Orchestrator; status=success -->
-## Summary
-<what changed>
-
-## Changes
-- <files>
-
-## Evidence
-- <logs/screens/test output>
-
-## Next_Step_Suggestion
-- <smallest next step>
-```
-
-## Handoff v2 (JSON-first)
-Handoff v2 moves all contracts and results into canonical JSON files validated against strict schemas. Each handoff lives under `.roo-orchestrator/Memory/handoffs/H####.json` and updates an append-only `.roo-orchestrator/Memory/handoff_ledger.json`. A compact **Context Pack** keeps forwarded context under ~800 tokens while linking to additional detail.
-
-### Verification Gates & WIP
-Orchestrator validates every returned `result_envelope` against `.roo-orchestrator/schemas/result_envelope.schema.json`, checks each acceptance criterion, and ensures only `allowed_files` changed before updating the ledger. The ledger enforces a WIP limit of one active slice (ready queue ≤3) and records status and cycle time.
-
-### CI Validation
-`scripts/validate-handoff.mjs` and the `validate-handoffs.yml` workflow reject invalid JSON on pull requests. See the schemas for exact fields:
-- [`.roo-orchestrator/schemas/handoff_contract.schema.json`](.roo-orchestrator/schemas/handoff_contract.schema.json)
-- [`.roo-orchestrator/schemas/result_envelope.schema.json`](.roo-orchestrator/schemas/result_envelope.schema.json)
-
-Example handoff: [`.roo-orchestrator/Memory/handoffs/H0001.json`](.roo-orchestrator/Memory/handoffs/H0001.json)
-
-## Project Memory
-- `.roo-orchestrator/Memory/handoffs.md` — Append-only log of handoffs and results
-- `.roo-orchestrator/Memory/ledger.md` — Summaries of notable results and decisions
-- `.roo-orchestrator/Memory/Implementation_Plan.md` — Living plan (Orchestrator maintains)
-- `.roo-orchestrator/Memory/BACKLOG.md` — ≤45-minute tasks with acceptance checks
-
-## Modes & Config
-- `.roomodes` defines the four custom modes and guardrails (≤45m scope, format enforcement, memory updates).
-- `.roo/commands/` provides slash commands to insert exact blocks and switch modes.
-
-### Slash Commands (Reference)
-- `/init-orchestrator` — APM-style multi-round interview + plan/backlog/memory
-- `/handoff-code` — delegate a small implementation task
-- `/handoff-debug` — delegate a diagnosis/fix
-- `/handoff-ask` — delegate clarification
-- `/result-success`, `/result-fail` — standardized result blocks
-- `/return-to-orchestrator` — update memory and switch back
-
-## Best Practices
-- Keep each handoff ≤45 minutes; split bigger items into backlog tasks.
-- Always include **Acceptance_Tests** and require **Evidence** in RESULTs.
-- Orchestrator updates **.roo-orchestrator/Memory/** and **.roo-orchestrator/Memory/Implementation_Plan.md** continuously.
-
-## Troubleshooting
-- Handoffs not triggering? Ensure you used the slash command templates.
-- Modes not switching? Use `/return-to-orchestrator` after a RESULT.
-- Missing context? Check `.roo-orchestrator/Memory/handoffs.md`, `.roo-orchestrator/Memory/ledger.md`, and `.roo-orchestrator/Memory/Implementation_Plan.md`.
-
----
-This framework eliminates copy/paste and gives you APM-like orchestration—inside Roo.
+### Credits
+Inspired in part by Switch Dimension’s “AI Dev Project Setup”.
