@@ -15,11 +15,9 @@ cp "$tmp/.roomodes" .
 mkdir -p .roo/commands .roo/rules-code .roo-orchestrator docs
 cp -R "$tmp/.roo/commands/." .roo/commands/
 cp -R "$tmp/.roo/rules-code/." .roo/rules-code/
-cp "$tmp/.roo/Makefile" .roo/Makefile
-cp "$tmp/.roo/pytest.ini" .roo/pytest.ini
 cp -R "$tmp/.roo-orchestrator/." .roo-orchestrator/
 cp -R "$tmp/docs/." docs/
-echo 'Bootstrap OK: .roomodes .roo/commands .roo/rules-code .roo/Makefile .roo/pytest.ini .roo-orchestrator docs'
+echo 'Bootstrap OK: .roomodes .roo/commands .roo/rules-code .roo-orchestrator docs'
 rm -rf "$tmp"
 ```
 
@@ -35,11 +33,9 @@ New-Item -ItemType Directory -Force ".roo-orchestrator" | Out-Null
 New-Item -ItemType Directory -Force "docs" | Out-Null
 Copy-Item -Force -Recurse "$tmp/.roo/commands/*" ".roo/commands"
 Copy-Item -Force -Recurse "$tmp/.roo/rules-code/*" ".roo/rules-code"
-Copy-Item -Force "$tmp/.roo/Makefile" ".roo/Makefile"
-Copy-Item -Force "$tmp/.roo/pytest.ini" ".roo/pytest.ini"
 Copy-Item -Force -Recurse "$tmp/.roo-orchestrator/*" ".roo-orchestrator"
 Copy-Item -Force -Recurse "$tmp/docs/*" "docs"
-Write-Host "Bootstrap OK: .roomodes .roo/commands .roo/rules-code .roo/Makefile .roo/pytest.ini .roo-orchestrator docs"
+Write-Host "Bootstrap OK: .roomodes .roo/commands .roo/rules-code .roo-orchestrator docs"
 Remove-Item -Recurse -Force $tmp
 ```
 
@@ -56,7 +52,7 @@ After the kickoff sequence, the Orchestrator takes over to plan and delegate sli
 
 Daily coding uses **Code mode** plus a tiny slice contract:
 1) Write 3–8 Acceptance Criteria bullets in `docs/Acceptance-Criteria.md`.
-2) Plan in 3 lines: **Files** (1–2), **Command** (`make quickcheck`), **Artifact** (one file/result).
+2) Plan in 3 lines: **Files** (1–2), **Command** (tests or lint), **Artifact** (one file/result).
 3) Ask Code mode to add tests first, make the smallest change, and run the command.
 4) Commit to trunk in small, green steps.
 
