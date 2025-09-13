@@ -1,5 +1,5 @@
 {
-  "$id": "result_envelope.schema.json",
+  "$id": "result.schema.json",
   "type": "object",
   "required": [
     "contract_id","from_mode","to_mode","status","summary",

@@ -1,5 +1,5 @@
 {
-  "$id": "handoff_contract.schema.json",
+  "$id": "handoff.schema.json",
   "type": "object",
   "required": [
     "contract_id", "version", "created_at", "from_mode", "to_mode",
@@ -14,7 +14,7 @@
     "ttl_runs": {"type": "integer", "minimum": 1, "default": 2},
     "created_at": {"type": "string"},
     "from_mode": {"type": "string"},
-    "to_mode": {"type": "string", "enum": ["code-fast","code","debug-fast","debug","ask"]},
+    "to_mode": {"type": "string"},
     "title": {"type": "string"},
     "objective": {"type": "string"},
     "dispatch_mode": {"type": "string"},
