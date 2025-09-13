@@ -2,6 +2,47 @@
 
 This repository provides an Orchestrator plus three kickoff Architect modes and lightweight Code-mode rules for a trunk-based, slice-first workflow in Roo.
 
+## Quickstart
+
+Paste into a fresh repo root to bootstrap the Architect pack.
+
+### macOS/Linux
+
+```bash
+tmp=$(mktemp -d)
+git clone https://github.com/lukeorellana/roo-orchestrator-framework "$tmp"
+cp "$tmp/.roomodes" .
+mkdir -p .roo/commands .roo/rules-code .roo-orchestrator docs
+cp -R "$tmp/.roo/commands/." .roo/commands/
+cp -R "$tmp/.roo/rules-code/." .roo/rules-code/
+cp "$tmp/.roo/Makefile" .roo/Makefile
+cp "$tmp/.roo/pytest.ini" .roo/pytest.ini
+cp -R "$tmp/.roo-orchestrator/." .roo-orchestrator/
+cp -R "$tmp/docs/." docs/
+echo 'Bootstrap OK: .roomodes .roo/commands .roo/rules-code .roo/Makefile .roo/pytest.ini .roo-orchestrator docs'
+rm -rf "$tmp"
+```
+
+### Windows PowerShell
+
+```powershell
+$tmp = New-Item -ItemType Directory -Path ([System.IO.Path]::GetTempPath() + [System.Guid]::NewGuid().ToString())
+git clone https://github.com/lukeorellana/roo-orchestrator-framework $tmp
+Copy-Item -Force "$tmp/.roomodes" "."
+New-Item -ItemType Directory -Force ".roo/commands" | Out-Null
+New-Item -ItemType Directory -Force ".roo/rules-code" | Out-Null
+New-Item -ItemType Directory -Force ".roo-orchestrator" | Out-Null
+New-Item -ItemType Directory -Force "docs" | Out-Null
+Copy-Item -Force -Recurse "$tmp/.roo/commands/*" ".roo/commands"
+Copy-Item -Force -Recurse "$tmp/.roo/rules-code/*" ".roo/rules-code"
+Copy-Item -Force "$tmp/.roo/Makefile" ".roo/Makefile"
+Copy-Item -Force "$tmp/.roo/pytest.ini" ".roo/pytest.ini"
+Copy-Item -Force -Recurse "$tmp/.roo-orchestrator/*" ".roo-orchestrator"
+Copy-Item -Force -Recurse "$tmp/docs/*" "docs"
+Write-Host "Bootstrap OK: .roomodes .roo/commands .roo/rules-code .roo/Makefile .roo/pytest.ini .roo-orchestrator docs"
+Remove-Item -Recurse -Force $tmp
+```
+
 ## Architect Kickoff
 Run `/init-architecture` at project start or major pivots to generate docs under `docs/` and stack rules in `.roo/`:
 
