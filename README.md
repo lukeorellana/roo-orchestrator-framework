@@ -1,62 +1,44 @@
-# Roo Architect Trunk Pack
+# spec-driven-development
 
-This repository provides an Orchestrator plus three kickoff Architect modes and lightweight Code-mode rules for a trunk-based, slice-first workflow in Roo.
+Spec-first, test-gated AI coding with Roo.
 
-## Quickstart
+**Loop:** AC → Plan → Tests-first → Minimal code → One command → Evidence → Commit to trunk.
 
-Paste into a fresh repo root to bootstrap the Architect pack.
+## Why
+- Clear “done” up front (Acceptance Criteria).
+- Small, green, trunk-friendly commits.
+- Lower token spend and less rework.
 
-### macOS/Linux
+## How to use
 
-```bash
-tmp=$(mktemp -d)
-git clone https://github.com/lukeorellana/roo-orchestrator-framework "$tmp"
-cp "$tmp/.roomodes" .
-mkdir -p .roo/commands .roo/rules-code .roo-orchestrator docs
-cp -R "$tmp/.roo/commands/." .roo/commands/
-cp -R "$tmp/.roo/rules-code/." .roo/rules-code/
-cp -R "$tmp/.roo-orchestrator/." .roo-orchestrator/
-cp -R "$tmp/docs/." docs/
-echo 'Bootstrap OK: .roomodes .roo/commands .roo/rules-code .roo-orchestrator docs'
-rm -rf "$tmp"
-```
+1) **Run Architects once** (Product → UX → Solution) to generate `docs/`:
+   - 🖽️ Product Architect → `docs/PRD.md`, `docs/Assumptions.md`
+   - 🎨 UX Architect → `docs/UX-Brief.md`, `docs/Acceptance-Criteria.md`
+   - 🏗️ Solution Architect → `docs/ImplementationGuide.md`, `docs/Tech-Choices.md` and (optionally) stack-specific `.roo/rules-code/*`
+   - Also maintains `docs/Slice-Backlog.md` (rolling-wave backlog).
 
-### Windows PowerShell
+2) **Create a slice spec fast**:
+   - Switch to **📝 Slice Spec Writer** mode.
+   - Give a one-line goal (e.g., “TypeORM DataSource using Azure AD token”).
+   - It writes a new section in `docs/Acceptance-Criteria.md` with:
+     - 3–8 AC bullets
+     - 3-line Plan (Files 1–2, one Command, one Artifact)
+     - Updates `docs/Slice-Backlog.md` if present.
 
-```powershell
-$tmp = New-Item -ItemType Directory -Path ([System.IO.Path]::GetTempPath() + [System.Guid]::NewGuid().ToString())
-git clone https://github.com/lukeorellana/roo-orchestrator-framework $tmp
-Copy-Item -Force "$tmp/.roomodes" "."
-New-Item -ItemType Directory -Force ".roo/commands" | Out-Null
-New-Item -ItemType Directory -Force ".roo/rules-code" | Out-Null
-New-Item -ItemType Directory -Force ".roo-orchestrator" | Out-Null
-New-Item -ItemType Directory -Force "docs" | Out-Null
-Copy-Item -Force -Recurse "$tmp/.roo/commands/*" ".roo/commands"
-Copy-Item -Force -Recurse "$tmp/.roo/rules-code/*" ".roo/rules-code"
-Copy-Item -Force -Recurse "$tmp/.roo-orchestrator/*" ".roo-orchestrator"
-Copy-Item -Force -Recurse "$tmp/docs/*" "docs"
-Write-Host "Bootstrap OK: .roomodes .roo/commands .roo/rules-code .roo-orchestrator docs"
-Remove-Item -Recurse -Force $tmp
-```
+3) **Execute the slice**:
+   - Switch to **Code** mode.
+   - Code mode enforces the gate (see `.roo/rules-code/99-preflight.md`):
+     - If AC/Plan missing → replies **BLOCKED** and gives a template.
+     - If AC were only in chat → auto-creates/updates `docs/Acceptance-Criteria.md`.
+     - Tests-first → minimal change → run **one command** → show trimmed logs.
+   - Make a small trunk commit.
 
-## Architect Kickoff
-Run `/init-architecture` at project start or major pivots to generate docs under `docs/` and stack rules in `.roo/`:
+4) **Repeat**
+   - New chat per slice.
+   - Let Solution Architect refresh `docs/Slice-Backlog.md` when scope changes.
 
-1. **🧭 Product Architect** — writes `docs/PRD.md` and `docs/Assumptions.md`
-2. **🎨 UX Architect** — writes `docs/UX-Brief.md` and `docs/Acceptance-Criteria.md`
-3. **🏗️ Solution Architect** — writes `docs/ImplementationGuide.md` and `docs/Tech-Choices.md`, and (re)generates stack rules in `.roo/rules-code/`
+### Slice Backlog
+`docs/Slice-Backlog.md` is owned by Solution Architect. Keep ~12–20 small slices, with the top 5 fully specified (ready blocks).
 
-After the kickoff sequence, the Orchestrator takes over to plan and delegate slices.
-
-## Trunk-Based Slice Workflow
-
-Daily coding uses **Code mode** plus a tiny slice contract:
-1) Write 3–8 Acceptance Criteria bullets in `docs/Acceptance-Criteria.md`.
-2) Plan in 3 lines: **Files** (1–2), **Command** (tests or lint), **Artifact** (one file/result).
-3) Ask Code mode to add tests first, make the smallest change, and run the command.
-4) Commit to trunk in small, green steps.
-
-Use Architect modes only at project start or major pivots to refresh PRD, UX, and Implementation Guide and to regenerate `.roo/rules-code/*`.
-
-**Credits:** Big kudos to Switch Dimension for the inspiration and excellent write‑up on AI project setup.
-Read the guide: <https://notes.switchdimension.com/AI-Dev-Project-Setup-Prompts-18fb5b07a94380758bd6e92baa5e8c98>
+### Credits
+Inspired in part by Switch Dimension’s “AI Dev Project Setup”.
